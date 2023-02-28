@@ -4,7 +4,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
-bool if_only_int(string text);
+int if_only_int(string text);
 string encrypt_text(string plaintext, int key);
 
 int main(int argc, string argv[])
@@ -16,6 +16,7 @@ int main(int argc, string argv[])
     {
         if (if_only_int(argv[1]))
         {
+            // using atoi function to convert a string to int
             key = atoi(argv[1]);
             plain_text = get_string("plaintext:  ");
             encrypted_text = encrypt_text(plain_text, key);
@@ -35,19 +36,21 @@ int main(int argc, string argv[])
     }
 }
 
-bool if_only_int(string text)
+// function to check if a string only contains int
+int if_only_int(string text)
 {
     int len = strlen(text);
     for (int i = 0; i < len; i++)
     {
         if (text[i] < 48 || text[i] > 57)
         {
-           return false;
+            return 0;
         }
     }
-        return true;
+    return 1;
 }
 
+// encrypting function
 string encrypt_text(string plaintext, int key)
 {
     int len = strlen(plaintext);
